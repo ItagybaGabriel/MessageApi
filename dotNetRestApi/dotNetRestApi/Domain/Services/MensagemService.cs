@@ -20,13 +20,13 @@ namespace dotNetRestApi.Domain.Services
         }
 
 
-        public async Task<List<Mensagem>> ListaTodasMensagem()
+        public async Task<List<Mensagem>> ListarTodasMensagem()
         {
-            List<Mensagem> listaTodasMensagem = await _mensagemRepository.ListaTodasMensagemAsync();
+            List<Mensagem> listaTodasMensagem = await _mensagemRepository.ListarTodasMensagemAsync();
 
             return listaTodasMensagem;
         }
-        public async Task<Mensagem> FindMensagemById([FromQuery] int id)
+        public async Task<Mensagem> FindMensagemById(int id)
         {
             Mensagem findMensagemById = await _mensagemRepository.FindMensagemByIdAsync(id);
 
@@ -37,7 +37,7 @@ namespace dotNetRestApi.Domain.Services
 
             return findMensagemById;
         }
-        public async Task<Mensagem> RegistrarNovaMensagem([FromBody] Mensagem mensagem)
+        public async Task<Mensagem> RegistrarNovaMensagem(Mensagem mensagem)
         {
             Mensagem registrarNovaMensagem = await _mensagemRepository.RegistrarNovaMensagemAsync(mensagem);
 
@@ -56,9 +56,9 @@ namespace dotNetRestApi.Domain.Services
             return aleterarMensagem;
         }
 
-        public async Task<Mensagem> DeleteMensagem(int id)
+        public async Task<Mensagem> DeletarMensagem(int id)
         {
-            Mensagem deletemensagem = await _mensagemRepository.DeleteMensagem(id);
+            Mensagem deletemensagem = await _mensagemRepository.DeletarMensagemAsync(id);
 
             if (deletemensagem == null)
                 throw new ArgumentException($"Não foi possível encontrar a mensagem '{id}'. ");

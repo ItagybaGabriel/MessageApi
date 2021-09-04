@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using dotNetRestApi.Data;
 using dotNetRestApi.Models;
 using dotNetRestApi.Domain.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace dotNetRestApi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class MensagensController : ControllerBase
@@ -28,7 +30,7 @@ namespace dotNetRestApi.Controllers
         {
             try
             {
-                return Ok(await _mensagemService.ListaTodasMensagem());
+                return Ok(await _mensagemService.ListarTodasMensagem());
             }
             catch (Exception ex)
             {
@@ -38,7 +40,7 @@ namespace dotNetRestApi.Controllers
 
         // GET
         [HttpGet("lista-mensagens/{id}")]
-        public async Task<ActionResult<Mensagem>> GetMensagembyId(int id)
+        public async Task<ActionResult<Mensagem>> GetMensagemById(int id)
         {
             try
             {
@@ -86,7 +88,7 @@ namespace dotNetRestApi.Controllers
         {
             try
             {
-                return Ok(await _mensagemService.DeleteMensagem(id));
+                return Ok(await _mensagemService.DeletarMensagem(id));
             }
             catch (Exception ex)
             {

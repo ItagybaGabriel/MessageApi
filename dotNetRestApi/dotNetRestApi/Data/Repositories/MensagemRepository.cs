@@ -17,17 +17,17 @@ namespace dotNetRestApi.Data.Repositories
             _context = context;
         }
 
-        public async Task<List<Mensagem>> ListaTodasMensagemAsync()
+        public async Task<List<Mensagem>> ListarTodasMensagemAsync()
         {
             return await _context.Mensagem.ToListAsync();
         }
 
-        public async Task<Mensagem> FindMensagemByIdAsync([FromQuery] int id)
+        public async Task<Mensagem> FindMensagemByIdAsync(int id)
         {
             return await _context.Mensagem.FindAsync(id);
         }
 
-        public async Task<Mensagem> RegistrarNovaMensagemAsync([FromBody] Mensagem mensagem)
+        public async Task<Mensagem> RegistrarNovaMensagemAsync(Mensagem mensagem)
         {
             _context.Mensagem.Add(mensagem);
             mensagem.Data = DateTime.Now;
@@ -44,7 +44,7 @@ namespace dotNetRestApi.Data.Repositories
             return _context.Entry(mensagem).Entity;
         }
 
-        public async Task<Mensagem> DeleteMensagem(int id)
+        public async Task<Mensagem> DeletarMensagemAsync(int id)
         {
             var mensagem = await _context.Mensagem.FindAsync(id);
 
